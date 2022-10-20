@@ -25,29 +25,33 @@
         <h1 style="margin-left: 110px;margin-top: 10px;">Rent Bill</h1>
         <form method="post" action="/view">
           <div class="txt_field">
-          <label for="EnterDate">Issued To</label>
-          <input type="text" value="<%= bill.issued_to %>" name="date" class="form-control" disabled>
-          
-        </div>
+            <label for="EnterDate">ID</label>
+            <input type="text" value="<%= bill.id %>" name="id" class="form-control" disabled>
+          </div>
+
+          <div class="txt_field">
+            <label for="EnterDate">Issued to</label>
+            <input type="text" value="<%= bill.issued_to %>" name="name" class="form-control" disabled>
+          </div>
 
         <div class="txt_field">
             <label for="EnterDate">Issued date</label>
-            <input type="text" name="date" class="form-control" disabled>
+            <input type="text" value="<%=bill.issued_date%>" name="date" class="form-control" disabled >
           </div>
 
           <div class="txt_field">
             <label for="EnterDate">Total amount</label>
-            <input type="text" name="amount" class="form-control" >
+            <input type="text" value="<%=bill.total_amount%>"name="amount" class="form-control" disabled >
           </div>
 
           <div class="txt_field">
             <label for="EnterDate">Deadline</label>
-            <input type="text" name="deadline" class="form-control" >
+            <input type="text" value="<%=bill.deadline%>"name="deadline" class="form-control" disabled>
           </div>
           <% }) %>
 
         <div class="sub_button">
-          <button type="view" class="button">Submit</button>
+          <button type="view" class="button">Pay now</button>
         </div>
       </form>
     </div>

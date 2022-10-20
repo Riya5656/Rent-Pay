@@ -50,8 +50,9 @@ router.get('/fill_bill',function(req,res,next){
 });
 
 
+
 router.post('/send', async function(req,res,next){
-  await Bill.insertMany([{issued_to: req.body.renter, issued_data:req.body.date,total_amount: req.body.amount,deadline: req.body.deadline}]);
+  await Bill.insertMany([{id:req.body.id, issued_to:req.body.name, issued_date:req.body.date,total_amount: req.body.amount,deadline: req.body.deadline}]);
   res.redirect('/send_bill');
 });
 
@@ -73,9 +74,14 @@ router.post('/renter_submit',function(req,res,next){
     res.redirect('/log_in');
   }
   else{
-    res.redirect('/error')
+    res.redirect('/incorrect')
   }
 });
+
+router.get('/incorrect',function(req,res,next){
+  res.render('incorrect');
+});
+
 
 router.get('/log_in',function(req,res,next){
   res.render('renter_dashboard');

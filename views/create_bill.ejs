@@ -24,17 +24,22 @@
         <h1 style="margin-left: 110px;margin-top: 10px;">Rent Bill</h1>
         <form method="post" action="/send">
           <div class="txt_field">
-          <label for="EnterDate">Issued to</label>
-          <input type="text" name="renter" class="form-control" >
-        </div>
+            <label for="EnterId">ID</label>
+            <input type="text" name="id" class="form-control" >
+          </div>
 
+          <div class="txt_field">
+            <label for="EnterId">Issued to</label>
+            <input type="text" name="name" class="form-control" >
+          </div>
+  
         <div class="txt_field">
             <label for="EnterDate">Issued date</label>
             <input type="text" name="date" class="form-control" >
           </div>
 
           <div class="txt_field">
-            <label for="EnterDate">Total amount</label>
+            <label for="EnterAmount">Total amount</label>
             <input type="text" name="amount" class="form-control" >
           </div>
 
