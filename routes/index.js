@@ -80,7 +80,8 @@ for(let j=0;j<counter;j++){
 
   if(renter_name==renter[j]['username']&& renter_password==renter[j]['password']){
     const rentee=renter[j]['name'];
-    res.render('renter_dashboard',{Name: rentee});
+    const rentee_id=renter[j]['id'];
+    res.render('renter_dashboard',{Name: rentee,id:rentee_id});
   }
 }
   res.redirect('/incorrect')
@@ -93,17 +94,15 @@ router.get('/incorrect',function(req,res,next){
 });
 
 
-
-
-router.post('/view_bill',function(req,res,next){
-  res.redirect('/show_bill');
-});
-
-router.get('/show_bill',async function(req,res,next){
-  const bills=await Bill.find();
-
+router.get('/view_bill/:id', async function(req,res,next){
+  const bills=await Bill.find({id:req.params.id});
   res.render('show_bill',{bill1:bills});
 });
+
+
+
+
+
 
 
 
