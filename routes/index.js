@@ -72,15 +72,15 @@ router.post('/renter_submit',function(req,res,next){
 const renter_name=req.body.email;
 const renter_password=req.body.password;
 let counter = 0;
-let sum=0;
+
 for (let i = 0; i < renter.length; i++) {
    counter++;
 }
 for(let j=0;j<counter;j++){
 
   if(renter_name==renter[j]['username']&& renter_password==renter[j]['password']){
-
-    res.redirect('/log_in');
+    const rentee=renter[j]['name'];
+    res.render('renter_dashboard',{Name: rentee});
   }
 }
   res.redirect('/incorrect')
@@ -93,9 +93,7 @@ router.get('/incorrect',function(req,res,next){
 });
 
 
-router.get('/log_in',function(req,res,next){
-  res.render('renter_dashboard');
-});
+
 
 router.post('/view_bill',function(req,res,next){
   res.redirect('/show_bill');
