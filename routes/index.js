@@ -3,6 +3,7 @@ var router = express.Router();
 var owner=require('../Resource/owner_login');
 const Bill= require('../models/created_bill');
 var renter=require('../Resource/renter_login');
+const { count } = require('../models/created_bill');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -67,16 +68,25 @@ router.get('/renter_login',function(req,res,next){
 
 
 router.post('/renter_submit',function(req,res,next){
-  const renter_name=req.body.email;
-  const renter_password=req.body.password;
-  console.log(renter[0]['username'])
-  if (renter_name==renter[0]['username'] && renter_password==renter[0]['password']){
+  //const renter_id=req.params.id;
+const renter_name=req.body.email;
+const renter_password=req.body.password;
+let counter = 0;
+let sum=0;
+for (let i = 0; i < renter.length; i++) {
+   counter++;
+}
+for(let j=0;j<counter;j++){
+
+  if(renter_name==renter[j]['username']&& renter_password==renter[j]['password']){
+
     res.redirect('/log_in');
   }
-  else{
-    res.redirect('/incorrect')
-  }
+}
+  res.redirect('/incorrect')
+
 });
+
 
 router.get('/incorrect',function(req,res,next){
   res.render('incorrect');
