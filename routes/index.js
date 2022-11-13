@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var owner=require('../Resource/owner_login');
 const Bill= require('../models/created_bill');
-const own= require('../models/own_registration');
+const Own= require('../models/own_registration');
 var renter=require('../Resource/renter_login');
 const { count } = require('../models/created_bill');
 
@@ -29,8 +29,6 @@ router.get('/owner_reg',function(req,res,next){
   res.render('owner_reg');
 });
 
-
-
 router.post('/submit',function(req,res,next){
   const owner_name=req.body.email;
   const owner_password=req.body.password;
@@ -47,9 +45,6 @@ router.get('/wrong',function(req,res,next){
   res.render('warn');
 });
 
-
-
-
 router.post('/create_bill',function(req,res,next){
   res.redirect('/fill_bill');
 });
@@ -57,8 +52,6 @@ router.post('/create_bill',function(req,res,next){
 router.get('/fill_bill',function(req,res,next){
   res.render('create_bill');
 });
-
-
 
 router.post('/send', async function(req,res,next){
   await Bill.insertMany([{id:req.body.id, issued_to:req.body.name, issued_date:req.body.date,total_amount: req.body.amount,deadline: req.body.deadline}]);
@@ -70,7 +63,7 @@ router.get('/send_bill',function(req,res,next){
 });
 
 router.post('/register', async function(req,res,next){
-  await own.insertMany([{fname:req.body.fname, lname:req.body.lname, email:req.body.email,phno: req.body.phno,pass: req.body.pass}]);
+  await Own.insertMany([{fname:req.body.fname, lname:req.body.lname, email:req.body.email,phno: req.body.phno,pass: req.body.pass}]);
   res.redirect('/');
 });
 
@@ -111,12 +104,5 @@ router.get('/view_bill/:id', async function(req,res,next){
   const bills=await Bill.find({id:req.params.id});
   res.render('show_bill',{bill1:bills});
 });
-
-
-
-
-
-
-
 
 module.exports = router;

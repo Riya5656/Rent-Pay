@@ -9,6 +9,6 @@ const regSchema = new Schema({
     pass:String,
 });
 
-module.exports = mongoose.model('own', regSchema);
+module.exports = mongoose.model('Own', regSchema);
 
 
