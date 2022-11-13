@@ -13,12 +13,19 @@ router.get('/login',function(req,res,next){
   res.render('login');
 });
 
+router.get('/register',function(req,res,next){
+  res.render('register');
+});
+
 router.get('/owner_login',function(req,res,next){
   res.render('owner_login');
 });
 
 router.get('/logged_in',function(req,res,next){
   res.render('owner_dashboard');
+});
+router.get('/owner_reg',function(req,res,next){
+  res.render('owner_reg');
 });
 
 

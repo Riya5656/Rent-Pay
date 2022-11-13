@@ -6,13 +6,28 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "mongoose": "^6.6.5",
-    "morgan": "~1.9.1",
+    "morgan": "~1.9.1"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Riya5656/Rent-Pay.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Riya5656/Rent-Pay/issues"
+  },
+  "homepage": "https://github.com/Riya5656/Rent-Pay#readme",
+  "description": "",
+  "devDependencies": {
     "nodemon": "^2.0.20"
   }
 }

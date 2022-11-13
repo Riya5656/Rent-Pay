@@ -9,7 +9,7 @@ body {
 li,a{
   font-family: "Lato",sans-serif;
   font-weight: 500;
-  font-size: 25px;
+  font-size: 22px;
   color: #ffffff;
   text-decoration: none;
   
@@ -141,7 +141,21 @@ border-radius: 8px;
   border-radius: 10px;
 }
 
-.row button{
+.cen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 350px;
+  height: 350px;
+  margin-top: 80px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+
+
+/* .row button{
   background-color:#D9D9D9;
   margin-top: 100px;
   width: 180px;
@@ -164,7 +178,7 @@ border-radius: 8px;
   border: none;
   border-radius: 10px;
   text-decoration: none;
-}
+} */
 
 .center .row1{
   width: 400px;
