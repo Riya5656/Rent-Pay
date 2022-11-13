@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var owner=require('../Resource/owner_login');
 const Bill= require('../models/created_bill');
+const own= require('../models/own_registration');
 var renter=require('../Resource/renter_login');
 const { count } = require('../models/created_bill');
 
@@ -66,6 +67,11 @@ router.post('/send', async function(req,res,next){
 
 router.get('/send_bill',function(req,res,next){
   res.render('ack');
+});
+
+router.post('/register', async function(req,res,next){
+  await own.insertMany([{fname:req.body.fname, lname:req.body.lname, email:req.body.email,phno: req.body.phno,pass: req.body.pass}]);
+  res.redirect('/');
 });
 
 

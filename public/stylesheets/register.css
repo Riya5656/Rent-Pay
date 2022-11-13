@@ -55,7 +55,7 @@ header{
 }
 .container{
   max-width: 700px;
-  max-height:555px;
+  max-height:557px;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
@@ -138,14 +138,14 @@ form .input-box span.details{
  form input[type="radio"]{
    display: none;
  }
- button{
+ /* button{
    height: 60px;
    width: 110px;
    margin-left: 500px;
    margin-bottom: 10px;
    background: linear-gradient(135deg, #71b7e6, #9b59b6);
 
- }
+ } */
  /* form .button input{
    height: 100%;
    width: 100%;
