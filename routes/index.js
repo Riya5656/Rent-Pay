@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var owner=require('../Resource/owner_login');
 const Bill= require('../models/created_bill');
 const Own= require('../models/own_registration');
-var renter=require('../Resource/renter_login');
+const Rent= require('../models/rent_registration');
 const { count } = require('../models/created_bill');
 
 /* GET home page. */
@@ -28,17 +27,20 @@ router.get('/logged_in',function(req,res,next){
 router.get('/owner_reg',function(req,res,next){
   res.render('owner_reg');
 });
+router.get('/renter_reg',function(req,res,next){
+  res.render('renter_reg');
+});
 
-router.post('/submit',function(req,res,next){
-  const owner_name=req.body.email;
-  const owner_password=req.body.password;
-  console.log(owner[0]['username'])
-  if (owner_name==owner[0]['username'] && owner_password==owner[0]['password']){
+
+router.post('/submit', async function(req,res,next){
+  let got=await Own.findOne({email:req.body.email});
+  let got2=await Own.findOne({pass:req.body.password});
+  if(got && got2){
     res.redirect('/logged_in');
   }
   else{
-    res.redirect('/wrong')
-  }
+       res.redirect('/wrong')
+     }
 });
 
 router.get('/wrong',function(req,res,next){
@@ -67,32 +69,57 @@ router.post('/register', async function(req,res,next){
   res.redirect('/');
 });
 
+router.post('/rent_register', async function(req,res,next){
+  await Rent.insertMany([{fname:req.body.fname, lname:req.body.lname, email:req.body.email,phno: req.body.phno,pass: req.body.pass}]);
+  res.redirect('/');
+});
+
 
 router.get('/renter_login',function(req,res,next){
   res.render('renter_login');
 });
 
 
-router.post('/renter_submit',function(req,res,next){
-  //const renter_id=req.params.id;
-const renter_name=req.body.email;
-const renter_password=req.body.password;
-let counter = 0;
-
-for (let i = 0; i < renter.length; i++) {
-   counter++;
-}
-for(let j=0;j<counter;j++){
-
-  if(renter_name==renter[j]['username']&& renter_password==renter[j]['password']){
-    const rentee=renter[j]['name'];
-    const rentee_id=renter[j]['id'];
-    res.render('renter_dashboard',{Name: rentee,id:rentee_id});
+router.post('/renter_submit', async function(req,res,next){
+  let got4=await Rent.findOne({email:req.body.email});
+  let got5=await Rent.findOne({pass:req.body.password});
+  if(got4 && got5){
+    res.redirect('/rente');
   }
-}
-  res.redirect('/incorrect')
-
+  else{
+       res.redirect('/inc')
+     }
 });
+
+
+router.get('/rente',function(req,res,next){
+  res.render('renter_dashboard');
+});
+
+
+  //const renter_id=req.params.id;
+  
+
+// router.post('/renter_submit',function(req,res,next){
+//   //const renter_id=req.params.id;
+// const renter_name=req.body.email;
+// const renter_password=req.body.password;
+// let counter = 0;
+
+// for (let i = 0; i < renter.length; i++) {
+//    counter++;
+// }
+// for(let j=0;j<counter;j++){
+
+//   if(renter_name==renter[j]['username']&& renter_password==renter[j]['password']){
+//     const rentee=renter[j]['name'];
+//     const rentee_id=renter[j]['id'];
+//     res.render('renter_dashboard',{Name: rentee,id:rentee_id});
+//   }
+// }
+//   res.redirect('/incorrect')
+
+// });
 
 
 router.get('/incorrect',function(req,res,next){
