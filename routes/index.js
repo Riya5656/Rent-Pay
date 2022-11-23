@@ -4,6 +4,8 @@ const Bill= require('../models/created_bill');
 const Own= require('../models/own_registration');
 const Rent= require('../models/rent_registration');
 const { count } = require('../models/created_bill');
+var renter=require('../Resource/renter_login');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -80,46 +82,46 @@ router.get('/renter_login',function(req,res,next){
 });
 
 
-router.post('/renter_submit', async function(req,res,next){
-  let got4=await Rent.findOne({email:req.body.email});
-  let got5=await Rent.findOne({pass:req.body.password});
-  if(got4 && got5){
-    res.redirect('/rente');
-  }
-  else{
-       res.redirect('/inc')
-     }
-});
+// router.post('/renter_submit', async function(req,res,next){
+//   let got4=await Rent.findOne({email:req.body.email});
+//   let got5=await Rent.findOne({pass:req.body.password});
+//   if(got4 && got5){
+//     res.redirect('/rente');
+//   }
+//   else{
+//        res.redirect('/inc')
+//      }
+// });
 
 
-router.get('/rente',function(req,res,next){
-  res.render('renter_dashboard');
-});
+// router.get('/rente',function(req,res,next){
+//   res.render('renter_dashboard');
+// });
 
 
   //const renter_id=req.params.id;
   
 
-// router.post('/renter_submit',function(req,res,next){
-//   //const renter_id=req.params.id;
-// const renter_name=req.body.email;
-// const renter_password=req.body.password;
-// let counter = 0;
+router.post('/renter_submit',function(req,res,next){
+  //const renter_id=req.params.id;
+const renter_name=req.body.email;
+const renter_password=req.body.password;
+let counter = 0;
 
-// for (let i = 0; i < renter.length; i++) {
-//    counter++;
-// }
-// for(let j=0;j<counter;j++){
+for (let i = 0; i < renter.length; i++) {
+   counter++;
+}
+for(let j=0;j<counter;j++){
 
-//   if(renter_name==renter[j]['username']&& renter_password==renter[j]['password']){
-//     const rentee=renter[j]['name'];
-//     const rentee_id=renter[j]['id'];
-//     res.render('renter_dashboard',{Name: rentee,id:rentee_id});
-//   }
-// }
-//   res.redirect('/incorrect')
+  if(renter_name==renter[j]['username']&& renter_password==renter[j]['password']){
+    const rentee=renter[j]['name'];
+    const rentee_id=renter[j]['id'];
+    res.render('renter_dashboard',{Name: rentee,id:rentee_id});
+  }
+}
+  res.redirect('/incorrect')
 
-// });
+});
 
 
 router.get('/incorrect',function(req,res,next){
